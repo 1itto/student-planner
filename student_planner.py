@@ -25,7 +25,7 @@ def user_input(text):
         value = input(text.strip())
     return value
 
-    def valid_date():
+def valid_date():
     while True:
         dates = input("Due date (DD/MM/YYYY): ").strip()
         date = dates.split("/")
