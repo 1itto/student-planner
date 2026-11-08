@@ -25,6 +25,34 @@ def user_input(text):
         value = input(text.strip())
     return value
 
+    def valid_date():
+    while True:
+        dates = input("Due date (DD/MM/YYYY): ").strip()
+        date = dates.split("/")
+        if len(date) == 3 and (len(date[0]) == 2 and len(date[1]) == 2 and len(date[2]) == 4):
+                if date[0].isdigit() and date[1].isdigit() and date[2].isdigit():
+                    return dates
+                else:
+                    print("Error: Please enter a valid date.")
+        else:
+            print("Error: Please enter a valid date.")
+
+
+def valid_priority():
+    while True:
+        value = input("Priority (1=High, 2=Medium, 3=Low): ").strip()
+        if value == "1":
+            priority = "High"
+            return priority
+        elif value == "2":
+            priority = "Medium"
+            return priority
+        elif value == "3":
+            priority = "Low"
+            return priority
+        else:
+            print("Error: Enter 1 for High, 2 for Medium, or 3 for Low")
+
 def add_task(tasks,next_task_id):
     title=read_required_text("Task title: ")
     course=read_required_text("Course name: ")
