@@ -16,7 +16,6 @@ def display_menu():
     print("8. Mark a task as completed")
     print("9. View task summary")
     print("10. Exit")
-    print("11. Search tasks by title keywords (three-member groups only)")
     print(x * 40)
 
 def user_input(text):
