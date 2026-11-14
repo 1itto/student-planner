@@ -1,9 +1,10 @@
 # Student Planner- Two group members
 # Amnah Almutairi ID : 447200000
-# Reemas Alsulami ID : 447200000
+# Reemas Alsulami ID : 447201974
 #section:78689
 
-# Prints the menu the user sees before every choice
+#Student planner is a program that allows students to store their multiple tasks and manage them by the highest priority, course, and due date.
+#The program allows students to add, edit, delete, and mark tasks as completed. and provied a summary of their tasks.
 
 def display_menu():
     x = '-'
@@ -22,22 +23,22 @@ def display_menu():
     print("10. Exit")
     print(x * 40)
 
- #Asks for the task details, checks them, then saves the new task in the list
+ 
 
 def add_task(tasks, next_task_id):
-    # The title can't be empty, so we keep asking until the user types something
+    
     title = input("Task title: ").strip()
     while title == "":
         print("Error: Please enter a valid input.")
         title = input("Task title: ").strip()
 
-    # Course name: ask again if it is empty
+    
     course = input("Course name: ").strip()
     while course == "":
         print("Error: Please enter a valid input.")
         course = input("Course name: ").strip()
 
-    # The date has to look like 15/10/2026: two digits, two digits, then four digits
+    
     while True:
         dates = input("Due date (DD/MM/YYYY): ").strip()
         date = dates.split("/")   
@@ -50,7 +51,7 @@ def add_task(tasks, next_task_id):
             print("Error: Please enter a valid date.")
     due_date = dates
 
-    # Priority: 1, 2, or 3 is saved as High, Medium, or Low
+    
     while True:
         value = input("Priority (1=High, 2=Medium, 3=Low): ").strip()
         if value == "1":
@@ -65,7 +66,7 @@ def add_task(tasks, next_task_id):
         else:
             print("Error: Enter 1 for High, 2 for Medium, or 3 for Low")
 
-    # A new task is always Pending until the user marks it as completed
+   
     new_task = {
         "id": next_task_id,
         "title": title,
@@ -78,7 +79,7 @@ def add_task(tasks, next_task_id):
     print(f"Task added successfully. Task ID: {next_task_id}")
     return next_task_id + 1
 
-# Goes through the list and gives back the task with this ID, or None if it isn't there
+
 
 def find_task_by_id(tasks, task_id):
     for task in tasks:
@@ -86,7 +87,7 @@ def find_task_by_id(tasks, task_id):
             return task
     return None
 
-# Prints one task's details; we use it everywhere so tasks always look the same
+
 
 def display_task(task):
     print(f"ID: {task['id']}")
@@ -96,10 +97,10 @@ def display_task(task):
     print(f"Priority: {task['priority']}")
     print(f"Status: {task['status']}")
 
-# Lets the user change one part of a task. The ID and status never change here
+
 
 def edit_task(tasks):
-    # The ID must be a positive whole number, so things like abc, 0 or -1 are rejected
+    
     value = input("Enter task ID: ").strip()
     if not (value.isdigit() and int(value) > 0):
         print("Error: Invalid task ID.")
@@ -115,7 +116,7 @@ def edit_task(tasks):
     print("3. Due date")
     print("4. Priority")
     print("5. Cancel")
-    # Ask which part of the task they want to change
+    
     field_choice = input("Enter your choice: ").strip()
 
     if field_choice == "1":
@@ -171,7 +172,7 @@ def edit_task(tasks):
 
     print("Task updated successfully.")
 
-# Removes the task with the given ID from the list
+
 
 def delete_task(tasks):
     value = input("Enter task ID: ").strip()
@@ -186,7 +187,7 @@ def delete_task(tasks):
         tasks.remove(task)
         print(f"Task with ID {task_id} deleted successfully.")
 
-# Shows every task in the same order they were added
+
 
 def list_all_tasks(tasks):
     if len(tasks) == 0:
@@ -196,10 +197,10 @@ def list_all_tasks(tasks):
     for i in range(len(tasks)):
         task = tasks[i]
         if i > 0:
-            print("-" * 40) # a line of dashes between tasks so they're easier to read
+            print("-" * 40) 
         display_task(task)
 
-# Shows the tasks of one course. We compare in lowercase so CSC111 and csc111 match
+
 
 def list_tasks_by_course(tasks):
     if len(tasks) == 0:
@@ -219,7 +220,7 @@ def list_tasks_by_course(tasks):
     if not found:
         print(f"No tasks found for course {course}.")
 
-# Shows only the tasks that have the priority the user picked
+
 
 def list_tasks_by_priority(tasks):
     if len(tasks) == 0:
@@ -248,7 +249,7 @@ def list_tasks_by_priority(tasks):
     if not found:
         print(f"No tasks found with {priority} priority.")
 
-# Changes a task to Completed, unless it's already completed
+
 
 def mark_task_completed(tasks):
     value = input("Enter task ID: ").strip()
@@ -265,7 +266,7 @@ def mark_task_completed(tasks):
         task["status"] = "Completed"
         print(f"Task {task_id} marked as completed.")
 
-# Counts the tasks and works out how many are done as a percentage
+
 
 def show_summary(tasks):
     total = len(tasks)
@@ -274,7 +275,7 @@ def show_summary(tasks):
         if task["status"] == "Completed":
             completed += 1
     pending = total - completed
-    # If there are no tasks we can't divide by zero, so we just show 100%
+    
     if total == 0:
         percentage = 100
     else:
@@ -285,11 +286,12 @@ def show_summary(tasks):
     print(f"Completed tasks: {completed}")
     print(f"Completion percentage: {percentage:.1f}%")
 
-# Runs the program: shows the menu, does what the user picks, and repeats until they choose 10
+
+# Shows the menu and runs each choice until the user exits
 
 def main():
-    tasks = []            # we start with no tasks every time the program runs
-    next_task_id = 1      # this only goes up, so a deleted ID is never used again
+    tasks = []            
+    next_task_id = 1      
     while True:
         display_menu()
         choice = input("Enter your choice: ").strip()
@@ -327,5 +329,5 @@ def main():
         else:
             print("Error: Invalid choice.")
 
- #Start the program           
+#Start the program           
 main()   
